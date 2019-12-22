@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<a class="btn btn-secondary btn-sm mb-3" href="{% url 'tray:index' %}">Back To Polls</a>
+<h1 class="text-center mb-3">{{ title.title_text }}</h1>
+
+{% if error_message %}
+<p class="alert alert-danger">
+	<strong>{{ error_message }}</strong>
+</p>
+{% endif %}
+{% for article in title.article_set.all %}
+    <div class="card-body">
+        <p class="card-text">{{ article.article_text }}</p>
+    </div>
+{% endfor %}
+
+<a class="btn btn-secondary btn-sm mb-3" href="{% url 'tray:like' title.id %}">like</a>
+{% endblock %}
